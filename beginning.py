@@ -40,7 +40,7 @@ def user():
             if "email" in session:
                 email =session["email"]
 
-        return render_template("user.html", email=email)
+        return render_template("user.html", user=user, email=email)
     else:
         flash("No has iniciado session")
         return redirect(url_for("login"))
