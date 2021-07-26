@@ -2,23 +2,67 @@
 {% block title %} Home Page {% endblock %}
 {% block content %}
 
-    <h1>Test</h1>
+    <!DOCTYPE html>
+    <html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <!--
+        <script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+        <style type="text/css">
+            .contenedor{ width: 350px; float: left;}
+            .titulo{ font-size: 12pt; font-weight: bold;}
+            #camara, #foto{
+                width: 320px;
+                min-height: 240px;
+                border: 1px solid #008000;
+            }
+        </style>
+        -->
+    </head>
+    <body>
+        <h1>Menu principal</h1>
+        <p>aqui irá toda la interfaz del proyecto <strong>CDS</strong> </p>
+    
+        <!-- agregar link de la imagen -->
+        <!-- 
+        <input type="text" class="form-control" name="username" placeholder="agregar link de imagen" required="" autofocus="" />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">submit</button>  
+        -->
+        <p></p>
+    
+        <!-- Subir imagen -->
+        <form action="/action_page.php">
+            <label for="img">Elige una imagen:</label>
+            <input type="file" id="img" name="img" accept="image/*">
+            <input type="submit">
+        </form>
+        
+        <p></p>
+        
+        <!-- activar la camara -->
+        <!-- 
+        <div id='botonera'>
+            <input id='botonIniciar' type='button' value = 'Iniciar'></input>
+            <input id='botonDetener' type='button' value = 'Detener'></input>
+            <input id='botonFoto' type='button' value = 'Foto'></input>
+        </div>
+        <div class="contenedor">
+            <div class="titulo">Cámara</div>
+            <video id="camara" autoplay controls></video>
+        </div>
+        <div class="contenedor">
+            <div class="titulo">Foto</div>
+            <canvas id="foto" ></canvas>
+        </div>
+        -->
+
+    </body>
+    </html>
 
 {% endblock %}
 
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
--->
