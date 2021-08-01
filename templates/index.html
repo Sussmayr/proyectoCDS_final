@@ -26,29 +26,29 @@
     </head>
     <body>
         <h1>Menu principal</h1>
-        <p>aqui irá toda la interfaz del proyecto <strong>CDS</strong> </p>
+        <!--  <p>aqui irá toda la interfaz del proyecto <strong>CDS</strong> </p> -->
     
         <!-- agregar link de la imagen -->
-        <!-- 
+        <!--
         <input type="text" class="form-control" name="username" placeholder="agregar link de imagen" required="" autofocus="" />
         <button class="btn btn-lg btn-primary btn-block" type="submit">submit</button>  
-        -->
-        <p> / </p>
+        
+        <p> / </p> -->
     
         <!-- Subir imagen -->
-        <p><strong>se cuenta con una opcion de subir una fotografia</strong> </p>
-        <form action="/action_page.php">
-            <label for="img">Elige una imagen:</label>
-            <input type="file" id="img" name="img" accept="image/*">
+        <p><strong>elige una fotografia a escanear</strong> </p>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="archivo">
             <input type="submit">
-        </form>
+           </form>
         
         <!-- activar la camara -->
         <!--
         <p><strong>asi como activar la camara y buscar a la persona en la base de datos</strong> </p>
         
         <input type="button" value="activar camara">
-        -->
+        <p> / </p> -->
 
     </body>
     </html>

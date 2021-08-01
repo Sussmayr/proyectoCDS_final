@@ -1,7 +1,9 @@
+from os import read
 from flask import Flask, redirect, url_for, render_template, request, flash
 
 import cv2
 import face_recognition
+from beginning import uploader
 
 # Cargamos las imagenes con los rostros que queremos identificar:
 imagen_paul = face_recognition.load_image_file("C:/Users/edwar/OneDrive/Documentos/proyecto CDS/reconocimiento-facial-CDS/imagenes/paul.jpg")
@@ -38,7 +40,8 @@ nombres_conocidos = [
 # Cargamos una fuente de texto:
 font = cv2.FONT_HERSHEY_COMPLEX
 
-# Cargamos la imagen donde hay que identificar los rostros:
+# Cargamos la imagen donde hay que identificar los rostros: 
+#img = face_recognition.load_image_file(uploader)
 img = face_recognition.load_image_file('C:/Users/edwar/OneDrive/Documentos/proyecto CDS/reconocimiento-facial-CDS/imagenes/IMG_20210604_194122.jpg')
 # (Para probar la segunda imagen hay que cambiar el argumento de la funcion por 'imagen_input2.jpg')
 

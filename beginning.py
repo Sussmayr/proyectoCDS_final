@@ -2,18 +2,23 @@ from types import MethodType
 from flask import Flask, redirect, url_for, render_template, request, flash
 from flask.globals import session
 from flask.wrappers import Request
+from werkzeug import secure_filename
 
-import cv2
+import os
 
 app = Flask (__name__)
+
 app.secret_key = "hello" #the encription password
+
 
 database={"Edward":"Pass123","ingrid":"Pass123"}
 
 @app.route('/')
 def home():
     return render_template("index.html")
+
 ###
+
 @app.route('/success/<name>/<passwrd>')
 def Success(name,passwrd):
     if name in database.keys():
@@ -37,6 +42,28 @@ def FetchData():
 
 ###
 
+# Carpeta de subida
+app.config['UPLOAD_FOLDER'] = 'C:/Users/edwar/OneDrive/Documentos/proyecto CDS_final/proyectoCDS_final/Face_Samples_Dataset/imagenes'
+
+@app.route("/")
+def upload_file():
+ # renderiamos la plantilla "formulario.html"
+ return render_template('index.html')
+
+@app.route("/upload", methods=['POST'])
+def uploader():
+ if request.method == 'POST':
+  # obtenemos el archivo del input "archivo"
+  f = request.files['archivo']
+  filename = secure_filename(f.filename)
+  # Guardamos el archivo en el directorio "Archivos"
+  f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+  # Retornamos una respuesta satisfactoria
+  return "<h1>Archivo subido exitosamente</h1>"
+
+###
+
+# login validations
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
@@ -72,6 +99,7 @@ def user():
         flash("No has iniciado session")
         return redirect(url_for("login"))
 
+# salir de la session
 @app.route("/logout")
 def logout():
     if "user" in session:
@@ -82,14 +110,10 @@ def logout():
     return redirect(url_for("login"))
 
 
+#abrir camara
 @app.route('/webcam')
 def cam():
     return render_template("webcam.html")
-
-@app.route('/camera')
-def cam1():
-    return render_template("camera.html")
-
 
 if __name__ == "__main__":
     app.run(debug=True)
