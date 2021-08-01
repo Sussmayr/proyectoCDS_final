@@ -38,7 +38,8 @@ def face_detector(img):
 name = {0:'Edward',1:'Ingrid', 2:'Einstein'}
 
 # capturing video capture object
-cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 
 while True:
     ret,img_frame = cap.read()  # Reading images from web camera

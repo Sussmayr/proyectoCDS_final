@@ -3,12 +3,39 @@ from flask import Flask, redirect, url_for, render_template, request, flash
 from flask.globals import session
 from flask.wrappers import Request
 
+import cv2
+
 app = Flask (__name__)
 app.secret_key = "hello" #the encription password
 
-@app.route("/")
+database={"Edward":"Pass123","ingrid":"Pass123"}
+
+@app.route('/')
 def home():
     return render_template("index.html")
+###
+@app.route('/success/<name>/<passwrd>')
+def Success(name,passwrd):
+    if name in database.keys():
+        if passwrd==database[name]:
+            return "<h1>Welcome!!!</h1>"
+        else:
+            return "<h1>Invalid Username or password</h1>"
+    else:
+        return "<h1>Username doesn't exists.</h1>"
+
+@app.route('/fetch_data',methods=['POST','GET'])
+def FetchData():
+    if request.method=="POST":
+        user=request.form['nm']
+        password=request.form['pw']
+        return redirect(url_for('Success',name=user,passwrd=password))
+    else:
+        user = request.args.get('nm')
+        password = request.args.get('pw')
+        return redirect(url_for('Success', name=user,passwrd=password))
+
+###
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -53,6 +80,15 @@ def logout():
     session.pop("user", None)
     session.pop("email", None)
     return redirect(url_for("login"))
+
+
+@app.route('/webcam')
+def cam():
+    return render_template("webcam.html")
+
+@app.route('/camera')
+def cam1():
+    return render_template("camera.html")
 
 
 if __name__ == "__main__":
