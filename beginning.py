@@ -47,21 +47,30 @@ app.config['UPLOAD_FOLDER'] = 'C:/Users/edwar/OneDrive/Documentos/proyecto CDS_f
 
 @app.route("/")
 def upload_file():
- # renderiamos la plantilla "formulario.html"
- return render_template('index.html')
+    # renderiamos la plantilla "formulario.html"
+    return render_template('index.html')
 
 @app.route("/upload", methods=['POST'])
 def uploader():
- if request.method == 'POST':
-  # obtenemos el archivo del input "archivo"
-  f = request.files['archivo']
-  filename = secure_filename(f.filename)
-  # Guardamos el archivo en el directorio "Archivos"
-  f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-  # Retornamos una respuesta satisfactoria
-  return "<h1>Archivo subido exitosamente</h1>"
-
+    if request.method == 'POST':
+        # obtenemos el archivo del input "archivo"
+        f = request.files['archivo']
+        filename = secure_filename(f.filename)
+        # Guardamos el archivo en el directorio "Archivos"
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # Retornamos una respuesta satisfactoria
+        #return "<h1>Archivo subido exitosamente</h1>"
+        fullpath = 'C:/Users/edwar/OneDrive/Documentos/proyecto CDS_final/proyectoCDS_final/Face_Samples_Dataset/imagenes/'+filename
+        #return fullpath
+        #return "<h1>Archivo subido exitosamente</h1>" + fullpath + '<h1><a href="/"><button>Regresar</button></a></h1>'
+        return render_template("upload.html") + fullpath
 ###
+
+@app.route('/scan/')
+def scan():
+  exec(open('Image_scan_recognition.py').read())
+  return render_template("index.html")
+
 
 # login validations
 @app.route("/login", methods=["POST", "GET"])

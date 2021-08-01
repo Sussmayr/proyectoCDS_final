@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Login Page {% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#", method="POST">
+        <h2>Archivo subido exitosamente</h2>  
+
+        <a href="/scan/"> <h1> Escanear </h1></a>
+    </form>
+
+    
+
+<!-- 
+    <form action="/Image_scan_recognition.py">
+        <input type="submit" value="escanear" />
+    </form>
+-->       
+
+</body>
+</html>
+
+
+{% endblock %}
