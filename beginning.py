@@ -68,9 +68,23 @@ def uploader():
 
 @app.route('/scan/')
 def scan():
-  exec(open('Image_scan_recognition.py').read())
-  return render_template("index.html")
+    exec(open('Image_scan_recognition.py').read())
+    return render_template("index.html")
 
+# mostrar todos
+@app.route('/Usuarios/', methods=["POST", "GET"])
+def usuarios():
+  return render_template("usuarios.php")
+
+# editar
+@app.route('/editar/', methods=["POST", "GET"])
+def editar():
+  return render_template("editar.php")
+
+# eliminar
+@app.route('/eliminar/', methods=["POST", "GET"])
+def eliminar():
+  return render_template("eliminar.php")
 
 # login validations
 @app.route("/login", methods=["POST", "GET"])
@@ -118,6 +132,20 @@ def logout():
     session.pop("email", None)
     return redirect(url_for("login"))
 
+@app.route('/registry', methods=["POST", "GET"])
+def registro():
+    if request.method == "POST":
+        user = request.form["nm"]
+        #user = request.form["pwd"]
+        session["user"] = user
+        flash("registrado correctamente!")
+        return redirect(url_for("user"))
+    else:
+        if "user" in session:
+            flash("ya has accedido a la session")
+            return redirect(url_for("user"))
+        
+        return render_template("registry.html")
 
 #abrir camara
 @app.route('/webcam')
